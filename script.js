@@ -29,6 +29,7 @@ function updateBoard() {
       tile.className = "tile";
       tile.textContent = board[r][c] === 0 ? "" : board[r][c];
       tile.style.background = getTileColor(board[r][c]);
+      tile.style.color = board[r][c] > 64 ? "#000" : "#ffffff"; // màu chữ tùy độ sáng
       grid.appendChild(tile);
     }
   }
@@ -127,27 +128,27 @@ function moveDown() {
 
 function getTileColor(val) {
   const colors = {
-    0: "#22293d",
-    2: "#e0f7fa",
-    4: "#b2ebf2",
-    8: "#4dd0e1",
-    16: "#26c6da",
-    32: "#00bcd4",
-    64: "#00acc1",
-    128: "#0097a7",
-    256: "#00838f",
-    512: "#006064",
-    1024: "#004d40",
-    2048: "#00363a"
+    0: "#1c1b27",     // Nền ô trống (màu nền tối)
+    2: "#004c42",     // Xanh đậm
+    4: "#006a5b",     // Xanh rêu
+    8: "#008c72",     // Xanh ngọc nhạt
+    16: "#00bfa5",    // Xanh ngọc sáng
+    32: "#00e6b8",    // Xanh mint
+    64: "#00ffcc",    // Xanh ngọc rực
+    128: "#3af2d2",   // Sáng hơn
+    256: "#77f5df",
+    512: "#a8f8ec",
+    1024: "#d2fbf5",
+    2048: "#ffffff"   // Trắng sáng chói
   };
-  return colors[val] || "#222";
+  return colors[val] || "#ffffff";
 }
 
 function updateScore() {
   document.getElementById("score").textContent = score;
 }
 
-// 🟥 Game Over functions
+// 🟥 Game Over logic
 function isGameOver() {
   for (let r = 0; r < 4; r++) {
     for (let c = 0; c < 4; c++) {
@@ -163,7 +164,6 @@ function showGameOver() {
   document.getElementById("game-over").style.display = "block";
 }
 
-// 🔁 Restart button
 document.getElementById("restart").addEventListener("click", () => {
   document.getElementById("game-over").style.display = "none";
   setup();
