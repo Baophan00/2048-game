@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateBoard();
   generate();
   generate();
+  updateScore();
 });
 
 function setup() {
@@ -15,6 +16,8 @@ function setup() {
     [0, 0, 0, 0],
     [0, 0, 0, 0]
   ];
+  score = 0;
+  updateScore();
 }
 
 function updateBoard() {
@@ -67,6 +70,7 @@ function slide(row) {
       row[i + 1] = 0;
     }
   }
+  updateScore(); // ← GỌI TẠI ĐÂY để cập nhật điểm khi gộp số
   return row.filter(val => val).concat(Array(4 - row.filter(val => val).length).fill(0));
 }
 
@@ -135,3 +139,16 @@ function getTileColor(val) {
   };
   return colors[val] || "#3c3a32";
 }
+
+// ✅ Hàm cập nhật điểm hiển thị:
+function updateScore() {
+  document.getElementById("score").textContent = score;
+}
+
+// ✅ Xử lý nút Restart
+document.getElementById("restart").addEventListener("click", () => {
+  setup();
+  updateBoard();
+  generate();
+  generate();
+});
