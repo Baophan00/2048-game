@@ -1,5 +1,6 @@
 let board = [];
 let score = 0;
+let highScore = localStorage.getItem("highScore") || 0;
 
 document.addEventListener("DOMContentLoaded", () => {
   setup();
@@ -20,6 +21,16 @@ function setup() {
   updateScore();
 }
 
+function updateScore() {
+  document.getElementById("score").textContent = score;
+  document.getElementById("high-score").textContent = highScore;
+  if (score > highScore) {
+    highScore = score;
+    localStorage.setItem("highScore", highScore);
+    document.getElementById("high-score").textContent = highScore;
+  }
+}
+
 function updateBoard() {
   const grid = document.getElementById("grid-container");
   grid.innerHTML = "";
@@ -29,7 +40,7 @@ function updateBoard() {
       tile.className = "tile";
       tile.textContent = board[r][c] === 0 ? "" : board[r][c];
       tile.style.background = getTileColor(board[r][c]);
-      tile.style.color = board[r][c] > 64 ? "#000" : "#ffffff"; // màu chữ tùy độ sáng
+      tile.style.color = board[r][c] > 64 ? "#000" : "#ffffff";
       grid.appendChild(tile);
     }
   }
@@ -128,27 +139,22 @@ function moveDown() {
 
 function getTileColor(val) {
   const colors = {
-    0: "#1c1b27",     // Nền ô trống (màu nền tối)
-    2: "#004c42",     // Xanh đậm
-    4: "#006a5b",     // Xanh rêu
-    8: "#008c72",     // Xanh ngọc nhạt
-    16: "#00bfa5",    // Xanh ngọc sáng
-    32: "#00e6b8",    // Xanh mint
-    64: "#00ffcc",    // Xanh ngọc rực
-    128: "#3af2d2",   // Sáng hơn
+    0: "#1c1b27",
+    2: "#004c42",
+    4: "#006a5b",
+    8: "#008c72",
+    16: "#00bfa5",
+    32: "#00e6b8",
+    64: "#00ffcc",
+    128: "#3af2d2",
     256: "#77f5df",
     512: "#a8f8ec",
     1024: "#d2fbf5",
-    2048: "#ffffff"   // Trắng sáng chói
+    2048: "#ffffff"
   };
   return colors[val] || "#ffffff";
 }
 
-function updateScore() {
-  document.getElementById("score").textContent = score;
-}
-
-// 🟥 Game Over logic
 function isGameOver() {
   for (let r = 0; r < 4; r++) {
     for (let c = 0; c < 4; c++) {
