@@ -1,0 +1,24 @@
+body {
+  font-family: Arial;
+  text-align: center;
+  background: #f5f5f5;
+}
+
+#grid-container {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.tile {
+  width: 90px;
+  height: 90px;
+  background: #ccc;
+  font-size: 24px;
+  line-height: 90px;
+  text-align: center;
+  border-radius: 5px;
+}
