@@ -1,24 +1,77 @@
 body {
-  font-family: Arial;
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(to bottom right, #1f1c2c, #928dab);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.game-container {
   text-align: center;
-  background: #f5f5f5;
+  padding: 20px;
+  background: #2c2c3a;
+  border-radius: 20px;
+  box-shadow: 0 0 15px #000;
+  width: 90%;
+  max-width: 420px;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.score-box {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  background: #444;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 #grid-container {
-  width: 400px;
-  height: 400px;
-  margin: auto;
+  width: 100%;
+  aspect-ratio: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .tile {
-  width: 90px;
-  height: 90px;
-  background: #ccc;
-  font-size: 24px;
-  line-height: 90px;
-  text-align: center;
-  border-radius: 5px;
+  background: #aaa;
+  color: #222;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+#restart {
+  background: #ffce00;
+  border: none;
+  color: #222;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+#restart:hover {
+  background: #ffd633;
+}
+
+.info {
+  font-size: 0.9rem;
+  opacity: 0.8;
 }

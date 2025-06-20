@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>2048 Game</title>
+  <title>2048 Arcade</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>2048</h1>
-  <div id="grid-container"></div>
-  <p>Use arrow keys to play</p>
+  <div class="game-container">
+    <h1 class="title">2048 Arcade</h1>
+    <div class="score-box">
+      <span>Score:</span> <span id="score">0</span>
+    </div>
+    <div id="grid-container"></div>
+    <button id="restart">🔄 Restart</button>
+    <p class="info">Use arrow keys to move. Combine numbers to reach 2048!</p>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
