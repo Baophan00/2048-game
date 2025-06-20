@@ -58,6 +58,9 @@ function handleInput(e) {
 
   if (played) {
     generate();
+    if (isGameOver()) {
+      showGameOver();
+    }
   }
 }
 
@@ -70,7 +73,7 @@ function slide(row) {
       row[i + 1] = 0;
     }
   }
-  updateScore(); // ← GỌI TẠI ĐÂY để cập nhật điểm khi gộp số
+  updateScore();
   return row.filter(val => val).concat(Array(4 - row.filter(val => val).length).fill(0));
 }
 
@@ -124,29 +127,45 @@ function moveDown() {
 
 function getTileColor(val) {
   const colors = {
-    0: "#ccc",
-    2: "#eee4da",
-    4: "#ede0c8",
-    8: "#f2b179",
-    16: "#f59563",
-    32: "#f67c5f",
-    64: "#f65e3b",
-    128: "#edcf72",
-    256: "#edcc61",
-    512: "#edc850",
-    1024: "#edc53f",
-    2048: "#edc22e"
+    0: "#22293d",
+    2: "#e0f7fa",
+    4: "#b2ebf2",
+    8: "#4dd0e1",
+    16: "#26c6da",
+    32: "#00bcd4",
+    64: "#00acc1",
+    128: "#0097a7",
+    256: "#00838f",
+    512: "#006064",
+    1024: "#004d40",
+    2048: "#00363a"
   };
-  return colors[val] || "#3c3a32";
+  return colors[val] || "#222";
 }
 
-// ✅ Hàm cập nhật điểm hiển thị:
 function updateScore() {
   document.getElementById("score").textContent = score;
 }
 
-// ✅ Xử lý nút Restart
+// 🟥 Game Over functions
+function isGameOver() {
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 4; c++) {
+      if (board[r][c] === 0) return false;
+      if (c < 3 && board[r][c] === board[r][c + 1]) return false;
+      if (r < 3 && board[r][c] === board[r + 1][c]) return false;
+    }
+  }
+  return true;
+}
+
+function showGameOver() {
+  document.getElementById("game-over").style.display = "block";
+}
+
+// 🔁 Restart button
 document.getElementById("restart").addEventListener("click", () => {
+  document.getElementById("game-over").style.display = "none";
   setup();
   updateBoard();
   generate();

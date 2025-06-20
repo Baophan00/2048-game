@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>2048 Arcade</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="game-container">
     <h1 class="title">2048 Arcade</h1>
+
     <div class="score-box">
       <span>Score:</span> <span id="score">0</span>
     </div>
-    <div id="grid-container"></div>
+
     <button id="restart">🔄 Restart</button>
-    <p class="info">Use arrow keys to move. Combine numbers to reach 2048!</p>
+
+    <div id="grid-container"></div>
+
+    <div id="game-over" style="display: none;" class="game-over">GAME OVER</div>
+
+    <div class="info">Use arrow keys to move the tiles. Join them to get 2048!</div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
